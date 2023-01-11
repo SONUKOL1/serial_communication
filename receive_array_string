@@ -1,0 +1,16 @@
+String serialData[5];
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Hi i'm build this code");  
+}
+
+void loop() {
+  if (Serial.read() == 'Q') { // start bit comm...
+    for (int i = 0; i < 5; i++) {
+      serialData[i] = Serial.readStringUntil('\n');
+    }
+    Serial.print(serialData[0]);
+    Serial.print(serialData[2]);
+    Serial.println(serialData[4]);
+  }
+}
