@@ -9,5 +9,6 @@ void loop() {
   for (int i = 0; i < 5; i++) {
     Serial.println(myArray[i]);
   }
+  Serial.flush();
   delay(50);
 }
