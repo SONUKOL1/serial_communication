@@ -13,4 +13,5 @@ void loop() {
     Serial.print(serialData[2]);
     Serial.println(serialData[4]);
   }
+  Serial.flush();
 }
