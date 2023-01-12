@@ -1,13 +1,12 @@
-int myArray[5] = { 10, 20, 30, 40, 50 };
+int myArray[] = { 99, 10, 20, 30, 40, 50 };
 
 void setup() {
   Serial.begin(115200);
-Serial.println("Hi i'm build this code");   
+  Serial.println("Hi i'm build this code ");
 }
 
 void loop() {
-  Serial.print('Q');
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 6; i++) {
     Serial.println(myArray[i]);
   }
   delay(50);
