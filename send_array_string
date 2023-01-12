@@ -1,4 +1,4 @@
-String myArray[] = { "Q hello", "world", "how", "are", "you" };
+String myArray[] = { "@@\n hello", "world", "how", "are", "you" };
 
 void setup() {
   Serial.begin(115200);
