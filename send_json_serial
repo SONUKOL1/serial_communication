@@ -1,0 +1,49 @@
+#include <ArduinoJson.h>
+
+int int1 = 1;
+int int2 = 2;
+int int3 = 3;
+int int4 = 4;
+int int5 = 5;
+
+String str1 = "hello";
+String str2 = "world";
+String str3 = "foo";
+String str4 = "bar";
+String str5 = "baz";
+
+float flt1 = 1.1;
+float flt2 = 2.2;
+float flt3 = 3.3;
+float flt4 = 4.4;
+float flt5 = 5.5;
+
+void setup() {
+  Serial.begin(115200);
+}
+
+void loop() {
+  // Create a JSON object
+  StaticJsonDocument<200> json;
+  // Add values to the object
+  json["int1"] = int1;
+  json["int2"] = int2;
+  json["int3"] = int3;
+  json["int4"] = int4;
+  json["int5"] = int5;
+  json["str1"] = str1;
+  json["str2"] = str2;
+  json["str3"] = str3;
+  json["str4"] = str4;
+  json["str5"] = str5;
+  json["flt1"] = flt1;
+  json["flt2"] = flt2;
+  json["flt3"] = flt3;
+  json["flt4"] = flt4;
+  json["flt5"] = flt5;
+
+  // Send the JSON object to the ESP8266
+  serializeJson(json, Serial);
+  Serial.println();
+  delay(500);
+}
