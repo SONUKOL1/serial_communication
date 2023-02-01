@@ -5,7 +5,7 @@ void setup() {
 }
 
 void loop() {
-  StaticJsonDocument<20000> doc;
+  StaticJsonDocument<500> doc;
   doc["string"] = "Hello, world!";
   doc["int"] = 4782;
   doc["float"] = 3.14657;
@@ -18,8 +18,10 @@ void loop() {
   doc["age"] = 64;
   doc["address"] = " Indian ";
   doc["sensor"] = 230.564767;
-  doc["data"][0] = 48.756080;
+ doc["data"][0] = 48.756080;
   doc["weather"]["temp"] = 21.2765;
+  doc["ADC0"] = random(4100);
+  doc["ADCRef"] = random(1700);  
   // doc["array"] = {1, 2, 3};
   // doc["object"] = {{"key1", "value1"}, {"key2", "value2"}};
   serializeJson(doc, Serial);
