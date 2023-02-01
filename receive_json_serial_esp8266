@@ -6,31 +6,31 @@ void setup() {
 
 void loop() {
   if (Serial.available()) {
-    StaticJsonDocument<300> doc;
+    StaticJsonDocument<500> doc;
     DeserializationError err = deserializeJson(doc, Serial);
     if (err) {
       Serial.print(" error:");
       Serial.println(err.c_str());
       return;
     }
-    //serializeJson(doc, Serial);
-    //Serial.println();
-    int age = doc["age"];
-    String address = doc["address"];
-    String name = doc["name"];
-    float sensor = doc["sensor"];
-    float data0 = doc["data"][0];
-    float weather_temp = doc["weather"]["temp"];
+    serializeJson(doc, Serial);
+   Serial.println();
+    // int age = doc["age"];
+    // String address = doc["address"];
+    // String name = doc["name"];
+    // float sensor = doc["sensor"];
+    // float data0 = doc["data"][0];
+    // float weather_temp = doc["weather"]["temp"];
 
-    if (doc.containsKey("ADC0")) {  //if ADC0 available in or out
-      int adc0 = doc["ADC0"];
-      Serial.print(adc0);
-    }
+    // if (doc.containsKey("ADC0")) {  //if ADC0 available in or out
+    //   int adc0 = doc["ADC0"];
+    //   Serial.print(adc0);
+    // }
 
-    if (doc.containsKey("ADCRef")) {
-      int adcref = doc["ADCRef"];
-      Serial.println(adcref);
-    }
+    // if (doc.containsKey("ADCRef")) {
+    //   int adcref = doc["ADCRef"];
+    //   Serial.println(adcref);
+    // }
     //  Serial.print(data0,4);
     //  Serial.println(weather_temp,4);
     //   Serial.print(age);
