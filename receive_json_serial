@@ -1,36 +1,35 @@
 #include <ArduinoJson.h>
 
-String jsonString;
-StaticJsonDocument<200> doc;
-
 void setup() {
   Serial.begin(115200);
 }
 
 void loop() {
   if (Serial.available()) {
-    jsonString = Serial.readStringUntil('\n');
-    deserializeJson(doc, jsonString);
-
-    int int1 = doc["int1"];
-    int int2 = doc["int2"];
-    int int3 = doc["int3"];
-    int int4 = doc["int4"];
-    int int5 = doc["int5"];
-
-    String str1 = doc["str1"];
-    String str2 = doc["str2"];
-    String str3 = doc["str3"];
-    String str4 = doc["str4"];
-    String str5 = doc["str5"];
-
-    float flt1 = doc["flt1"];
-    float flt2 = doc["flt2"];
-    float flt3 = doc["flt3"];
-    float flt4 = doc["flt4"];
-    float flt5 = doc["flt5"];
-
-   // Serial.println(flt4);
-    Serial.println(jsonString);
+    StaticJsonDocument<200> doc;
+    DeserializationError err = deserializeJson(doc, Serial);
+    if (err) {
+      Serial.print(" error:");
+      Serial.println(err.c_str());
+    }
+    serializeJson(doc, Serial);
+    Serial.println();
+    //  String s=doc["string"];
+    //  Serial.print(s);
+    // Serial.print(doc["string"].as<char*>());
+    // Serial.print(doc["int"].as<int>());
+    // Serial.print(doc["float"].as<float>());
+    // Serial.print(doc["boolean"].as<bool>());
+    // JsonArray array = doc["array"].as<JsonArray>();
+    // for (int i = 0; i < array.size(); i++) {
+    //  Serial.println(array[i].as<int>());   }
+    //  JsonObject object = doc["object"].as<JsonObject>();
+    //  for (JsonPair p : object) {
+    //     Serial.println(p.key().c_str());
+    //     Serial.println(p.value().as<char*>());  }
+    // Serial.print(doc["null"].isNull());
+    // Serial.print(doc["char"].as<char>());
+    // Serial.print(doc["byte"].as<byte>());
+    // Serial.println(doc["word"].as<word>());
   }
 }
