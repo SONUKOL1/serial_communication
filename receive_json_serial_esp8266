@@ -1,0 +1,52 @@
+#include <ArduinoJson.h>
+
+void setup() {
+  Serial.begin(115200);
+}
+
+void loop() {
+  if (Serial.available()) {
+    StaticJsonDocument<300> doc;
+    DeserializationError err = deserializeJson(doc, Serial);
+    if (err) {
+      Serial.print(" error:");
+      Serial.println(err.c_str());
+      return;
+    }
+    //serializeJson(doc, Serial);
+    //Serial.println();
+    int age = doc["age"];
+    String address = doc["address"];
+    String name = doc["name"];
+    float sensor = doc["sensor"];
+    float data0 = doc["data"][0];
+    float weather_temp = doc["weather"]["temp"];
+
+    if (doc.containsKey("ADC0")) {  //if ADC0 available in or out
+      int adc0 = doc["ADC0"];
+      Serial.print(adc0);
+    }
+
+    if (doc.containsKey("ADCRef")) {
+      int adcref = doc["ADCRef"];
+      Serial.println(adcref);
+    }
+    //  Serial.print(data0,4);
+    //  Serial.println(weather_temp,4);
+    //   Serial.print(age);
+    //   Serial.print(address);
+    //   Serial.print(sensor, 5);
+    //   Serial.print(doc["name"].as<String>());
+    //   Serial.print(doc["age"].as<int>());
+    //   Serial.print(doc["address"].as<String>());
+    //   Serial.println(doc["sensor"].as<float>(), 4);
+    //   Serial.print(doc["string"].as<char*>());
+    //   Serial.print(doc["int"].as<int>());
+    //   Serial.print(doc["float"].as<float>());
+    //   Serial.print(doc["boolean"].as<bool>());
+    //   Serial.print(doc["null"].isNull());
+    //   Serial.print(doc["char"].as<char>());
+    //   Serial.print(doc["byte"].as<byte>());
+    //   Serial.println(doc["word"].as<word>());
+  }
+}
